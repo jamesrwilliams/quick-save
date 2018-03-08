@@ -1,3 +1,11 @@
-import Core from './core.js';
-export { Core };
+export default class qs {
 
+  constructor() {
+
+    console.log('QS Demo');
+
+    this.property = true;
+
+  }
+
+};
