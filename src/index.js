@@ -1,13 +1,3 @@
-var QS = class {
+import Core from './core.js';
+export { Core };
 
-  constructor() {
-
-    console.log('Fired');
-
-    this._name = 'Hello World';
-
-  }
-
-};
-
-export { QS };
