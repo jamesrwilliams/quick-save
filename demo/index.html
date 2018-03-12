@@ -8,10 +8,57 @@
         <title>Quick Save | Demo</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     </head>
     <body>
 
-    	<h1>Quick Save Demo</h1>
+    	<header class="jumbotron">
+    		<div class="container">
+    			<div class="row">
+    				<div class="col-xs-12">
+    				
+						<h1>Quick Save Demo</h1>
+
+    				</div>
+    			</div>
+    		</div>
+
+    	</header>
+
+    	<main class="container">
+    		<div class="row">
+    			<div class="col">
+    				
+					<div class="form-group">
+						<label for="example-1">Example 1</label>
+						<input id="example-1" data-qs class="form-control" type="text" name="example-1">
+					</div>
+
+					<div class="form-group">
+						<label for="example-2">Example 2</label>
+						<input id="example-2" data-qs class="form-control" type="text" name="example-2" value="Example 2 Inited With Value">
+					</div>
+
+					<div class="form-group">
+						<label for="example-3">Example 3</label>
+						<textarea id="example-3" data-qs class="form-control" name="example-3" placeholder="Example 3"></textarea>
+					</div>
+
+					<div class="form-group">
+						<label for="example-4">Example 4</label>
+						<textarea id="example-4" data-qs class="form-control" name="example-4" placeholder="Example 4">Example 4 Inited With Value</textarea>
+					</div>
+
+					<div class="form-group">
+						<label for="example-5"></label>
+						<input type="text" data-qs id="example-5" name="" class="form-control" placeholder="Input Missing Name Attribute">
+					</div>
+
+    			</div>
+    		</div>
+    	</main>
 
         <script type="text/javascript" src="../lib/qs.js"></script>
 		<script type="text/javascript">
