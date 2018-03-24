@@ -1,5 +1,7 @@
 # Quick Save
+
 Utility script for saving forms fields to localStorage using data-attributes. Makes testing form applications quicker.
+Quick-save uses the element type (i.e `input` or `textarea`) and the name attribute to generate a localStorage key for the data.
 
 ## Usage
 
