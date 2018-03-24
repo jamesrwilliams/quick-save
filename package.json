@@ -1,5 +1,5 @@
 {
-  "name": "quick-save-forms",
+  "name": "quick-save",
   "version": "1.0.0",
   "description": "Utility script for saving forms fields to localStorage using data- attributes. Makes testing form applications quicker.",
   "main": "qs.js",
@@ -15,14 +15,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://jamesrwilliams@github.com/jamesrwilliams/quick-save-forms.git"
+    "url": "git+https://jamesrwilliams@github.com/jamesrwilliams/quick-save.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jamesrwilliams/quick-save-forms/issues"
+    "url": "https://github.com/jamesrwilliams/quick-save/issues"
   },
-  "homepage": "https://github.com/jamesrwilliams/quick-save-forms#readme",
+  "homepage": "https://github.com/jamesrwilliams/quick-save#readme",
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
