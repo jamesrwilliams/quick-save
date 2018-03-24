@@ -18,13 +18,15 @@ _Work In Progress_
 - [ ] Specify either local or session storage (default: local)
 - [ ] Specify the storage key prefix (default: qs)
 - [ ] Specify the data-attribute used for selecting fields to quick-save
+- [ ] Debug - Notifies if elements are missing required attributes (name vs data-qs-name etc)
 
 ```
 var qs = new qs({
   
   storage: 'local',
   prefix: 'qs_',
-  attribute: 'qs'
+  attribute: 'qs',
+  debug: true
   
 });
 ```
