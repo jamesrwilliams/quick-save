@@ -2,7 +2,15 @@ export default class qs {
 
   constructor() {
 
-    console.log('QS Demo');
+    // TODO Load options
+    this.initialize();
+
+  }
+
+  /**
+   * Intialise the script
+   */
+  initialize() {
 
     this.$elms = document.querySelectorAll('[data-qs]');
 
@@ -12,31 +20,71 @@ export default class qs {
 
       if (!$elm.name) {
 
-        console.log("QS - Form Elements need a 'name' attribute.");
+        console.log('QS - Form element needs a name attribute.', $elm);
+
+      } else {
+
+        let content = this.readLocalStorage($elm);
+
+        if (content !== '') {
+
+          // Load localStorage
+          $elm.value = JSON.parse(content);
+
+        }
+
+        $elm.addEventListener('change', (event) => this.writeLocalStorage(event.srcElement));
 
       }
-
-      window.localStorage.setItem($elm.name, JSON.stringify($elm.value));
-
-      // $elm.addEventListener('input', function(event){
-
-      // console.log("Changed", event);
-
-      // });
 
     }
 
   }
 
+  /**
+   * Wrapper for writing to designated storage system.
+   * @param  {object} $elm  HTML Node object of the field that has changed.
+   * @return {undefined}
+   */
   writeLocalStorage($elm) {
 
-    console.log('writeLocalStorage');
+    window.localStorage.setItem(this.getStorageKey($elm), JSON.stringify($elm.value));
 
   }
 
+  /**
+   * Load field data from storage.
+   * @param  {object} $elm HTML Node object of the field that has changed.
+   * @return {object}      JSON encoded content from provided elements storage.
+   */
   readLocalStorage($elm) {
 
-    console.log('readLocalStorage');
+    let lsContent = window.localStorage.getItem(this.getStorageKey($elm));
+
+    return lsContent;
+
+  }
+
+  /**
+   * Returns the storage key using the provided element and the specified prefix.
+   * @param  {object} $elm  HTML Node object of a field.
+   * @return {string}       storage key string
+   */
+  getStorageKey($elm) {
+
+    let lsKey = 'qs_' + $elm.tagName.toLowerCase() + '#' + $elm.name;
+
+    return lsKey;
+
+  }
+
+  /**
+   * Method that clears all storage data for provided key
+   * @return {int} Number of removed elements.
+   */
+  clear(key) {
+
+    // TOOD Clear all quick-save localstorage content;
 
   }
 
