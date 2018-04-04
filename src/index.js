@@ -1,16 +1,23 @@
 export default class qs {
 
-  constructor() {
+  constructor(args) {
+
+    this.options = {
+      storage: 'local',
+      prefix: 'qs_',
+      attribute: 'qs',
+      debug: true
+    };
 
     // TODO Load options
-    this.initialize();
+    this.initialize(this.options);
 
   }
 
   /**
    * Intialise the script
    */
-  initialize() {
+  initialize(args) {
 
     this.$elms = document.querySelectorAll('[data-qs]');
 

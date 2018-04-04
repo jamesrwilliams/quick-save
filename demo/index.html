@@ -62,7 +62,14 @@
 		<script type="text/javascript">
 
 			// Play here...
-			var qs = new qs();
+			var qs = new qs({
+                
+                storage: 'local',
+                prefix: 'qs_',
+                attribute: 'qs',
+                debug: true
+                
+            });
 
 		</script>
     </body>
