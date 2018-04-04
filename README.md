@@ -5,7 +5,23 @@ Quick-save uses the element type (i.e `input` or `textarea`) and the name attrib
 
 ## Usage
 
-Include the script and then initialize:
+### 1. Include the Script
+
+Either serve locally or you can use the [jsdeliver](https://www.jsdelivr.com/) CDN version:
+
+```
+https://cdn.jsdelivr.net/gh/jamesrwilliams/quick-save@1.0.0/lib/qs.js
+```
+
+### 2. Add the `data-qa` attribute 
+
+The script requires a name attribute (this is used for the LocalStorage key) for elements you want to be saved:
+
+```
+<input type="text" data-qs name="example" id="name">
+```
+
+### 3. Initialize:
 
 ```
 var qs = new qs();
