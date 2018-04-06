@@ -1,39 +1,64 @@
 export default class qs {
 
-  constructor() {
+  constructor(args) {
 
-    // TODO Load options
-    this.initialize();
+    this.options = {
+      storage: 'local',
+      prefix: 'qs_',
+      attribute: 'qs',
+      debug: false
+    };
+
+    this.storage;
+
+    this.initialize(args);
 
   }
 
   /**
-   * Intialise the script
+   * Initialise the script
    */
-  initialize() {
+  initialize(args) {
 
-    this.$elms = document.querySelectorAll('[data-qs]');
+    // Parse user arguments
+    this.options = Object.assign(this.options, args);
+
+    // Determine the storage vector
+    if (this.options.storage === 'local') {
+
+      this.storage = window.localStorage;
+
+    } else if (this.options.storage === 'session') {
+
+      this.storage = window.sessionStorage;
+
+    } else {
+
+      console.error('QS - Unknown storage option. Please use either "session" or "local".');
+
+    }
+
+    this.$elms = document.querySelectorAll('[data-' + this.options.attribute + ']');
 
     for (let i = 0; i < this.$elms.length; i++) {
 
       let $elm = this.$elms[i];
 
-      if (!$elm.name) {
+      if (!$elm.name && this.options.debug === true) {
 
-        console.log('QS - Form element needs a name attribute.', $elm);
+        console.warn('QS - Form element needs a name attribute.', $elm);
 
       } else {
 
-        let content = this.readLocalStorage($elm);
+        let content = this.readFromStorage($elm);
 
         if (content !== '') {
 
-          // Load localStorage
           $elm.value = JSON.parse(content);
 
         }
 
-        $elm.addEventListener('change', (event) => this.writeLocalStorage(event.srcElement));
+        $elm.addEventListener('change', (event) => this.writeToStorage(event.srcElement));
 
       }
 
@@ -46,9 +71,9 @@ export default class qs {
    * @param  {object} $elm  HTML Node object of the field that has changed.
    * @return {undefined}
    */
-  writeLocalStorage($elm) {
+  writeToStorage($elm) {
 
-    window.localStorage.setItem(this.getStorageKey($elm), JSON.stringify($elm.value));
+    this.storage.setItem(this.getStorageKey($elm), JSON.stringify($elm.value));
 
   }
 
@@ -57,9 +82,9 @@ export default class qs {
    * @param  {object} $elm HTML Node object of the field that has changed.
    * @return {object}      JSON encoded content from provided elements storage.
    */
-  readLocalStorage($elm) {
+  readFromStorage($elm) {
 
-    let lsContent = window.localStorage.getItem(this.getStorageKey($elm));
+    let lsContent = this.storage.getItem(this.getStorageKey($elm));
 
     return lsContent;
 
@@ -68,11 +93,11 @@ export default class qs {
   /**
    * Returns the storage key using the provided element and the specified prefix.
    * @param  {object} $elm  HTML Node object of a field.
-   * @return {string}       storage key string
+   * @return {string}       Storage key string
    */
   getStorageKey($elm) {
 
-    let lsKey = 'qs_' + $elm.tagName.toLowerCase() + '#' + $elm.name;
+    let lsKey = this.options.prefix + $elm.tagName.toLowerCase() + '#' + $elm.name;
 
     return lsKey;
 
@@ -82,9 +107,23 @@ export default class qs {
    * Method that clears all storage data for provided key
    * @return {int} Number of removed elements.
    */
-  clear(key) {
+  removeFromStorage(key) {
 
-    // TOOD Clear all quick-save localstorage content;
+    if (key) {
+
+      this.storage.removeItem(key);
+
+    }
+
+  }
+
+  /**
+   * Clears the current storage vector
+   * @return {undefined}
+   */
+  removeAll() {
+
+    this.storage.clear();
 
   }
 
