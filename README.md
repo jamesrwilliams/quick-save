@@ -29,20 +29,22 @@ var qs = new qs();
 
 ## Options
 
-_Work In Progress_
-
-- [ ] Specify either local or session storage (default: local)
-- [ ] Specify the storage key prefix (default: qs)
-- [ ] Specify the data-attribute used for selecting fields to quick-save
-- [ ] Debug - Notifies if elements are missing required attributes (name vs data-qs-name etc)
+Change script settings by passing an options object to the constructor, like so:
 
 ```
 var qs = new qs({
   
-  storage: 'local',
-  prefix: 'qs_',
   attribute: 'qs',
   debug: true
+  prefix: 'qs_',
+  storage: 'local',
   
 });
 ```
+
+|Setting|Description|Example Value|Default Value|
+|---|---|---|---|
+|`attribute`| Replace the default data attribute to a custom one. Eg `data-[attribute]` | `custom-attribute` | `qs` |
+|`debug`| Enable verbose feedback on missing attributes | `true` or `false` | `true` |
+|`prefix`| Use a custom prefix for the storage keys | `custom_` | `qs_` |
+|`storage`| Change the storage class for the data. |`session` or `local`|`local`|
